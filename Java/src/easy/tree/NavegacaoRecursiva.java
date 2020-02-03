@@ -1,0 +1,45 @@
+package easy.tree;
+
+import java.util.Stack;
+
+public class NavegacaoRecursiva {
+    private class Node {
+        int data;
+        Node left;
+        Node right;
+    }
+
+    public static void inOrder(Node root) {
+        if (root == null) return;
+        inOrder(root.left);
+        System.out.print(root.data + " ");
+        inOrder(root.right);
+    }
+
+    public static void postOrder(Node root) {
+
+        if (root == null) return;
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.data + " ");
+    }
+
+    public static void preOrder(Node root) {
+/*
+        if (root == null) return;
+        System.out.print(root.data + " ");
+        preOrder(root.left);
+        preOrder(root.right);
+*/
+
+
+        Stack<Node> pilha = new Stack();
+        pilha.push(root);
+        while (!pilha.isEmpty()){
+            Node current = pilha.pop();
+            System.out.print(current.data + " ");
+            if (current.right != null) pilha.push(current.right);
+            if (current.left != null) pilha.push(current.left);
+        }
+    }
+}
